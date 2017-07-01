@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane styleClass="background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.skevary.view.OverviewController">
+   <padding>
+      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+   </padding>
+   <children>
+      <HBox layoutX="10.0" layoutY="10.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <TextField promptText="Enter the address of your page" HBox.hgrow="ALWAYS" />
+            <ToggleButton mnemonicParsing="false" prefWidth="100.0" text="Start" />
+         </children>
+      </HBox>
+      <HBox layoutX="10.0" layoutY="10.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+         <children>
+            <TextField promptText="Select the path to the folder on your computer" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" prefWidth="100.0" text="Path" />
+         </children>
+      </HBox>
+      <TextArea layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+      <HBox alignment="CENTER_RIGHT" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Button mnemonicParsing="false" prefWidth="130.0" text="Clear" />
+            <Button mnemonicParsing="false" prefWidth="130.0" text="Exit" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
