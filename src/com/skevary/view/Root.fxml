@@ -5,7 +5,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane minHeight="140.0" minWidth="120.0" prefHeight="450.0" prefWidth="400.0" styleClass="background" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.skevary.view.RootController">
+<BorderPane minHeight="140.0" minWidth="120.0" prefHeight="450.0" prefWidth="400.0" styleClass="background" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.skevary.view.RootController">
     <top>
         <MenuBar BorderPane.alignment="CENTER">
                 <Menu mnemonicParsing="false" text="File">
