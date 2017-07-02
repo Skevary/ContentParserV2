@@ -1,6 +1,6 @@
 /* -------- Root Pane --------  */
 .menu-bar {
-    -fx-background-color: #3da9f1;
+    -fx-background-color: #4dcc3f;
 }
 
 .menu-bar .label {
@@ -14,36 +14,36 @@
 
 /* -------- Overview Pane --------  */
 
-.tab-pane .tab-header-area .tab-header-background {
-    -fx-background-color: #a0c4ee;
-}
-
 .background {
     -fx-background: #ebdaeb;
 }
 
 .button {
-    -fx-background-color : #4ea9e6;
+    -fx-background-color : #4dcc3f;
     -fx-text-fill        : white;
 }
 
 .button:hover {
-    -fx-background-color : #4e83e6;
+    -fx-background-color : #34b126;
 }
 
 .button:pressed, .button:default:hover:pressed {
-    -fx-background-color: #5855cf;
+    -fx-background-color: #219514;
     -fx-border-color: #837e7b;
 }
 
 .toggle-button {
-    -fx-background-color : #4ea9e6;
+    -fx-background-color : #4dcc3f;
     -fx-text-fill        : white;
 }
 .toggle-button:hover {
-    -fx-background-color : #4e83e6;
+    -fx-background-color : #34b126;
 }
 .toggle-button:selected {
-    -fx-background-color: #5855cf;
+    -fx-background-color: #219514;
     -fx-border-color: #837e7b;
+}
+
+.progress-bar {
+    -fx-accent: #34b126;
 }
