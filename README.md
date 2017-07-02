@@ -4,6 +4,6 @@ The new version of "ContentParser" which fixed some bad code and bad design deci
 
 The outdated version can be seen [here](https://github.com/Skevary/ContentParser).
 
-![alt tag](https://github.com/Skevary/ContentParserV2/tree/master/resources/screenshot/c1.png)
+![alt tag](https://github.com/Skevary/ContentParserV2/blob/master/resources/screenshot/c1.png)
 
-![alt tag](https://github.com/Skevary/ContentParserV2/tree/master/resources/screenshot/c2.png)
+![alt tag](https://github.com/Skevary/ContentParserV2/blob/master/resources/screenshot/c2.png)
