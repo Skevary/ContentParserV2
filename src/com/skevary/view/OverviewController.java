@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.stage.DirectoryChooser;
 
 import java.io.File;
+import java.io.IOException;
 
 public class OverviewController {
     @FXML private TextField fieldUrl;
@@ -45,4 +46,7 @@ public class OverviewController {
 
     @FXML private void handleClear() { areaLog.clear(); }
 
+    @FXML private void showInExplorer() throws IOException {
+        Runtime.getRuntime().exec("explorer.exe /select," + fieldPath.getText());
+    }
 }
