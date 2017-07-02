@@ -1,9 +1,11 @@
 package com.skevary.parser;
 
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 
 public abstract class Parser implements Runnable {
     private TextArea areaLog;
+    private ProgressBar progressBar;
     private Thread thread;
     private String url;
     private String path;
@@ -17,6 +19,7 @@ public abstract class Parser implements Runnable {
         try {
             thread.interrupt();
             thread.join();
+            progressBar.setProgress(0);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
@@ -33,6 +36,10 @@ public abstract class Parser implements Runnable {
     public TextArea getAreaLog() { return areaLog; }
 
     public void setAreaLog(TextArea areaLog) { this.areaLog = areaLog; }
+
+    public ProgressBar getProgressBar() { return progressBar; }
+
+    public void setProgressBar(ProgressBar progressBar) { this.progressBar = progressBar; }
 
     public Thread getThread() { return thread; }
 }
