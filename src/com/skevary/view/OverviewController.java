@@ -11,25 +11,19 @@ import java.io.IOException;
 
 public class OverviewController {
     @FXML private TextField fieldUrl;
-    @FXML private ToggleButton buttonStart;
+    @FXML private ToggleButton parserButton;
     @FXML private TextField fieldPath;
-    @FXML private Button buttonPath;
+    @FXML private Button pathButton;
     @FXML private TextArea areaLog;
     @FXML private ProgressBar progressBar;
 
     private Parser parser;
 
     @FXML private void handleButtonStart() {
-        if (buttonStart.isSelected()) {
-            buttonStart.setText("Stop");
-            parser = new JsoupParser(fieldUrl.getText(), fieldPath.getText(), areaLog, progressBar);
-            parser.start();
-            buttonPath.setDisable(true);
-        } else {
-            buttonStart.setText("Start");
-            parser.stop();
-            buttonPath.setDisable(false);
-        }
+        if (parserButton.isSelected())
+            startParserButton();
+        else
+            stopParserButton();
     }
 
     @FXML private void handleButtonPath() {
@@ -48,5 +42,20 @@ public class OverviewController {
 
     @FXML private void showInExplorer() throws IOException {
         Runtime.getRuntime().exec("explorer.exe /select," + fieldPath.getText());
+    }
+
+    public void updateAreaLog(String message){ areaLog.appendText(message); }
+
+    public void updateProgressBar(Double value){ progressBar.setProgress(value); }
+    
+    public void startParserButton(){
+        parserButton.setText("Stop");
+        parser = new JsoupParser(fieldUrl.getText(), fieldPath.getText(),this);
+        parser.start();
+    }
+    public void stopParserButton(){
+        parser.stop();
+        parserButton.setText("Start");
+        parserButton.setSelected(false);
     }
 }

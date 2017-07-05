@@ -17,13 +17,13 @@
       <HBox layoutX="10.0" layoutY="10.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <TextField fx:id="fieldUrl" promptText="Enter the address of your page" HBox.hgrow="ALWAYS" />
-            <ToggleButton fx:id="buttonStart" mnemonicParsing="false" onAction="#handleButtonStart" prefWidth="100.0" text="Start" />
+            <ToggleButton fx:id="parserButton" mnemonicParsing="false" onAction="#handleButtonStart" prefWidth="100.0" text="Start" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="10.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <children>
             <TextField fx:id="fieldPath" promptText="Select the path to the folder on your computer" HBox.hgrow="ALWAYS" />
-            <Button fx:id="buttonPath" mnemonicParsing="false" onAction="#handleButtonPath" prefWidth="100.0" text="Path" />
+            <Button fx:id="pathButton" mnemonicParsing="false" onAction="#handleButtonPath" prefWidth="100.0" text="Path" />
          </children>
       </HBox>
       <ProgressBar fx:id="progressBar" progress="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />

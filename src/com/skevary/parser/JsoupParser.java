@@ -1,7 +1,6 @@
 package com.skevary.parser;
 
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextArea;
+import com.skevary.view.OverviewController;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -12,42 +11,43 @@ import java.io.IOException;
 import java.net.URL;
 
 public class JsoupParser extends Parser {
-
+    /* The default constructor */
     public JsoupParser() {
         this.setUrl("Empty URL");
         this.setPath("Empty Path");
     }
 
-    public JsoupParser(String url, String path, TextArea areaLog, ProgressBar progressBar) {
+    public JsoupParser(String url, String path, OverviewController controller) {
         this.setUrl(url);
         this.setPath(path);
-        this.setAreaLog(areaLog); //The Inject TextArea for to update it in real time from this class.
-        this.setProgressBar(progressBar);
+        this.setController(controller); // Inject OverviewController
     }
 
-    @Override
     public void run() {
         try {
             Elements links = Jsoup.connect(getUrl()).get().select("a[href$=.webm]");
-            double step=0; // Step in the progress bar
+            double step = 0; // Step in the progress bar
             for (Element link : links) {
-                if (getThread().isInterrupted()) break;
-
+                /* Tests whether this thread has been interrupted. */
+                if (getThread().isInterrupted()) {
+                    stop();
+                    break;
+                }
                 String fileName = link.text();
+                /* Absolute path links */
                 URL absUrl = new URL(link.absUrl("abs:href"));
+                /* New file */
                 File file = new File(getPath() + File.separator + fileName);
-                // Creates a file on disk
-
+                /* Save file on are disk */
                 if (!file.exists()) {
                     FileUtils.copyURLToFile(absUrl, file);
-                    getAreaLog().appendText("File \"" + fileName + "\" is successfully loaded\n");
+                    getController().updateAreaLog("File \"" + fileName + "\" is successfully loaded\n");
                 }
                 step++;
-                getProgressBar().setProgress(step/links.size());
+                getController().updateProgressBar(step / links.size());
             }
-            getAreaLog().appendText("The download has been completed!\n");
-            stop();
-
+            /* The end of the download*/
+            endDownload();
         } catch (IOException e) {
             e.printStackTrace();
         }

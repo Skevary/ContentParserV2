@@ -1,11 +1,10 @@
 package com.skevary.parser;
 
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextArea;
+import com.skevary.view.OverviewController;
+import javafx.application.Platform;
 
 public abstract class Parser implements Runnable {
-    private TextArea areaLog;
-    private ProgressBar progressBar;
+    private OverviewController controller;
     private Thread thread;
     private String url;
     private String path;
@@ -19,10 +18,19 @@ public abstract class Parser implements Runnable {
         try {
             thread.interrupt();
             thread.join();
-            progressBar.setProgress(0);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+    }
+
+    public void endDownload(){
+        Platform.runLater(new Runnable() {
+            public void run() {
+                getController().updateAreaLog("The download has been completed!\n");
+                getController().updateProgressBar(0.0);
+                getController().stopParserButton();
+            }
+        });
     }
 
     public String getUrl() { return url; }
@@ -33,13 +41,9 @@ public abstract class Parser implements Runnable {
 
     public void setPath(String path) { this.path = path; }
 
-    public TextArea getAreaLog() { return areaLog; }
+    public OverviewController getController() { return controller; }
 
-    public void setAreaLog(TextArea areaLog) { this.areaLog = areaLog; }
-
-    public ProgressBar getProgressBar() { return progressBar; }
-
-    public void setProgressBar(ProgressBar progressBar) { this.progressBar = progressBar; }
+    public void setController(OverviewController controller) { this.controller = controller; }
 
     public Thread getThread() { return thread; }
 }
