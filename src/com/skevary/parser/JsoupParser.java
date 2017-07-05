@@ -39,6 +39,7 @@ public class JsoupParser extends Parser {
                     stop();
                     break;
                 }
+                step++;
                 String fileName = link.text();
                 /* Absolute path links */
                 URL absUrl = new URL(link.absUrl("abs:href"));
@@ -48,9 +49,10 @@ public class JsoupParser extends Parser {
                 if (!file.exists()) {
                     FileUtils.copyURLToFile(absUrl, file);
                     getController().updateAreaLog("File \"" + fileName + "\" is successfully loaded\n");
+                    getController().updateCounterFiles((int)step + " / " + (links.size()-1));
                 }
-                step++;
                 getController().updateProgressBar(step / links.size());
+
             }
             /* The end of the download*/
             endDownload();

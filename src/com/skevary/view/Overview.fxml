@@ -8,6 +8,7 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane styleClass="background" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.skevary.view.OverviewController">
    <padding>
@@ -26,7 +27,12 @@
             <Button fx:id="pathButton" mnemonicParsing="false" onAction="#handleButtonPath" prefWidth="100.0" text="Path" />
          </children>
       </HBox>
-      <ProgressBar fx:id="progressBar" progress="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0" />
+      <HBox spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+         <children>
+            <ProgressBar fx:id="progressBar" maxWidth="Infinity" progress="0.0" HBox.hgrow="ALWAYS" />
+            <Text fx:id="textCounterFiles" strokeType="OUTSIDE" strokeWidth="0.0" text="Current File / All File" />
+         </children>
+      </HBox>
       <TextArea fx:id="areaLog" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
       <HBox alignment="CENTER_RIGHT" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>

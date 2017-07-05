@@ -4,6 +4,7 @@ import com.skevary.parser.JsoupParser;
 import com.skevary.parser.Parser;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 
 import java.io.File;
@@ -16,6 +17,7 @@ public class OverviewController {
     @FXML private Button pathButton;
     @FXML private TextArea areaLog;
     @FXML private ProgressBar progressBar;
+    @FXML private Text textCounterFiles;
 
     private Parser parser;
 
@@ -47,6 +49,8 @@ public class OverviewController {
     public void updateAreaLog(String message){ areaLog.appendText(message); }
 
     public void updateProgressBar(Double value){ progressBar.setProgress(value); }
+
+    public void updateCounterFiles(String counter){ textCounterFiles.setText(counter); }
     
     public void startParserButton(){
         parserButton.setText("Stop");

@@ -28,7 +28,6 @@ public abstract class Parser implements Runnable {
         Platform.runLater(new Runnable() {
             public void run() {
                 getController().updateAreaLog("The download has been completed!\n");
-                getController().updateProgressBar(0.0);
                 getController().stopParserButton();
             }
         });
