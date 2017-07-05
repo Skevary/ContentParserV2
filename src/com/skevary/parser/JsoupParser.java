@@ -11,18 +11,24 @@ import java.io.IOException;
 import java.net.URL;
 
 public class JsoupParser extends Parser {
-    /* The default constructor */
+    /** The default constructor */
     public JsoupParser() {
         this.setUrl("Empty URL");
         this.setPath("Empty Path");
     }
-
+    /**
+     * Constructor with parameters
+     *
+     * @param url the target address
+     * @param path the local path on disk
+     * @param controller to update FXML form in runtime
+     */
     public JsoupParser(String url, String path, OverviewController controller) {
         this.setUrl(url);
         this.setPath(path);
         this.setController(controller); // Inject OverviewController
     }
-
+    /** Script which gets links and saves the content to disk */
     public void run() {
         try {
             Elements links = Jsoup.connect(getUrl()).get().select("a[href$=.webm]");
@@ -48,6 +54,7 @@ public class JsoupParser extends Parser {
             }
             /* The end of the download*/
             endDownload();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

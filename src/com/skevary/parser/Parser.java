@@ -9,11 +9,12 @@ public abstract class Parser implements Runnable {
     private String url;
     private String path;
 
+    /** Start operation of the parser. */
     public void start() {
         thread = new Thread(this);
         thread.start();
     }
-
+    /** Stop operation of the parser. */
     public void stop() {
         try {
             thread.interrupt();
@@ -22,7 +23,7 @@ public abstract class Parser implements Runnable {
             Thread.currentThread().interrupt();
         }
     }
-
+    /** Update component in {@link OverviewController} at the end of the download files. */
     public void endDownload(){
         Platform.runLater(new Runnable() {
             public void run() {
