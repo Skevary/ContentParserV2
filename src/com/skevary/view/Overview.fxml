@@ -33,7 +33,7 @@
             <Text fx:id="textCounterFiles" strokeType="OUTSIDE" strokeWidth="0.0" text="Current File / All File" />
          </children>
       </HBox>
-      <TextArea fx:id="areaLog" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
+      <TextArea fx:id="areaLog" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="35.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
       <HBox alignment="CENTER_RIGHT" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Button mnemonicParsing="false" onAction="#showInExplorer" prefWidth="120.0" text="Show in Explorer" />
