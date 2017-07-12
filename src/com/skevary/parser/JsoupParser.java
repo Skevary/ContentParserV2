@@ -13,8 +13,6 @@ import java.net.URL;
 public class JsoupParser extends Parser {
     /** The default constructor */
     public JsoupParser() {
-        this.setUrl("Empty URL");
-        this.setPath("Empty Path");
     }
     /**
      * Constructor with parameters
@@ -24,9 +22,7 @@ public class JsoupParser extends Parser {
      * @param controller to update FXML form in runtime
      */
     public JsoupParser(String url, String path, OverviewController controller) {
-        this.setUrl(url);
-        this.setPath(path);
-        this.setController(controller); // Inject OverviewController
+        super(url, path, controller);
     }
     /** Script which gets links and saves the content to disk */
     public void run() {
@@ -39,7 +35,6 @@ public class JsoupParser extends Parser {
                     stop();
                     break;
                 }
-                step++;
                 String fileName = link.text();
                 /* Absolute path links */
                 URL absUrl = new URL(link.absUrl("abs:href"));
@@ -51,6 +46,7 @@ public class JsoupParser extends Parser {
                     getController().updateAreaLog("File \"" + fileName + "\" is successfully loaded\n");
                     getController().updateCounterFiles((int)step + " / " + (links.size()-1));
                 }
+                step++;
                 getController().updateProgressBar(step / links.size());
 
             }

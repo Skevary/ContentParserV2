@@ -9,6 +9,24 @@ public abstract class Parser implements Runnable {
     private String url;
     private String path;
 
+    /** The default constructor */
+    public Parser() {
+        this.url = "Empty URL";
+        this.path = "Empty Path";
+    }
+    /**
+     * Constructor with parameters
+     *
+     * @param url the target address
+     * @param path the local path on disk
+     * @param controller to update FXML form in runtime
+     */
+    public Parser(String url, String path, OverviewController controller) {
+        this.url = url;
+        this.path = path;
+        this.controller = controller;
+    }
+
     /** Start operation of the parser. */
     public void start() {
         thread = new Thread(this);
@@ -27,23 +45,20 @@ public abstract class Parser implements Runnable {
     public void endDownload(){
         Platform.runLater(new Runnable() {
             public void run() {
-                getController().updateAreaLog("The download has been completed!\n");
-                getController().stopParserButton();
+                controller.updateAreaLog("The download has been completed!\n");
+                controller.stopParserButton();
             }
         });
     }
-
+    /** @return parser - url address*/
     public String getUrl() { return url; }
 
-    public void setUrl(String url) { this.url = url; }
-
+    /** @return parser - local path*/
     public String getPath() { return path; }
 
-    public void setPath(String path) { this.path = path; }
-
+    /** @return parser - OverviewController*/
     public OverviewController getController() { return controller; }
 
-    public void setController(OverviewController controller) { this.controller = controller; }
-
+    /** @return parser - thread*/
     public Thread getThread() { return thread; }
 }
