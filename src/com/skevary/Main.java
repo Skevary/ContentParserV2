@@ -29,8 +29,8 @@ public class Main extends Application {
             loader.setLocation(Main.class.getResource("view/Root.fxml"));
             rootLayout = loader.load();
             Scene scene = new Scene(rootLayout);
-            primaryStage.setMinWidth(300.0);
-            primaryStage.setMinHeight(250.0);
+            primaryStage.setMinWidth(415.0);
+            primaryStage.setMinHeight(295.0);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {

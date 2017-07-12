@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class OverviewController {
+    @FXML private ToggleGroup parserGroup;
     @FXML private TextField fieldUrl;
     @FXML private ToggleButton parserButton;
     @FXML private TextField fieldPath;
