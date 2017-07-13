@@ -1,6 +1,8 @@
 package com.skevary.view;
 
+import com.skevary.parser.GsonParser;
 import com.skevary.parser.JsoupParser;
+import com.skevary.parser.NativeParser;
 import com.skevary.parser.Parser;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -55,7 +57,20 @@ public class OverviewController {
     
     public void startParserButton(){
         parserButton.setText("Stop");
-        parser = new JsoupParser(fieldUrl.getText(), fieldPath.getText(),this);
+        String selected = (String) parserGroup.getSelectedToggle().getUserData();
+        switch (selected) {
+            case "Jsoup":
+                parser = new JsoupParser(fieldUrl.getText(), fieldPath.getText(), this);
+                break;
+            case "Gson":
+                parser = new GsonParser();
+                break;
+            case "Native":
+                parser = new NativeParser();
+                break;
+            default:
+                System.out.println("Wrong choice!");
+        }
         parser.start();
     }
     public void stopParserButton(){

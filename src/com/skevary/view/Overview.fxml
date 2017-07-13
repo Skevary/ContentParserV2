@@ -34,9 +34,9 @@
             <ToggleGroup fx:id="parserGroup" />
          </fx:define>
          <children>
-            <RadioButton mnemonicParsing="false" text="Jsoup" toggleGroup="$parserGroup" selected="true" />
-            <RadioButton mnemonicParsing="false" text="Gson" toggleGroup="$parserGroup" />
-            <RadioButton mnemonicParsing="false" text="Regular Expressions" toggleGroup="$parserGroup" />
+            <RadioButton mnemonicParsing="false" text="Jsoup" toggleGroup="$parserGroup" userData="Jsoup" selected="true" />
+            <RadioButton mnemonicParsing="false" text="Gson" toggleGroup="$parserGroup"  userData="Gson" />
+            <RadioButton mnemonicParsing="false" text="Native" toggleGroup="$parserGroup" userData="Native" />
          </children>
       </HBox>
       <HBox spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="90.0">
