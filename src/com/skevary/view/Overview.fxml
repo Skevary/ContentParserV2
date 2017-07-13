@@ -26,7 +26,7 @@
       <HBox layoutX="10.0" layoutY="10.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <children>
             <TextField fx:id="fieldPath" promptText="Select the path to the folder on your computer" HBox.hgrow="ALWAYS" />
-            <Button fx:id="pathButton" mnemonicParsing="false" onAction="#handleButtonPath" prefWidth="100.0" text="Path" />
+            <Button mnemonicParsing="false" onAction="#handleButtonPath" prefWidth="100.0" text="Path" />
          </children>
       </HBox>
       <HBox layoutX="10.0" layoutY="10.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="67.0">

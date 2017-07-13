@@ -17,7 +17,6 @@ public class OverviewController {
     @FXML private TextField fieldUrl;
     @FXML private ToggleButton parserButton;
     @FXML private TextField fieldPath;
-    @FXML private Button pathButton;
     @FXML private TextArea areaLog;
     @FXML private ProgressBar progressBar;
     @FXML private Text textCounterFiles;
@@ -55,7 +54,7 @@ public class OverviewController {
 
     public void updateCounterFiles(String counter){ textCounterFiles.setText(counter); }
     
-    public void startParserButton(){
+    private void startParserButton(){
         parserButton.setText("Stop");
         String selected = (String) parserGroup.getSelectedToggle().getUserData();
         switch (selected) {
