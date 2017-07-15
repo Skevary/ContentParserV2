@@ -12,6 +12,8 @@ public class NativeParser extends Parser {
     }
 
     @Override public void run() {
+        // Stop current thread
+        if (getThread().isInterrupted()) stop();
         System.out.println("This's Native Parser");
         // Print in Area Log
         getController().updateAreaLog("*****************************************\n");
@@ -21,7 +23,5 @@ public class NativeParser extends Parser {
         getController().updateAreaLog("old version of the app on my profile in GitHub: \n");
         getController().updateAreaLog("https://github.com/Skevary/ContentParser/\n");
         getController().updateAreaLog("*****************************************\n");
-        // Stop current thread
-        if (getThread().isInterrupted()) stop();
     }
 }

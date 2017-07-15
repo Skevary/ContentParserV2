@@ -52,6 +52,7 @@ public class JsoupParser extends Parser {
             endDownload();
 
         } catch (IOException e) {
+            endDownload();
             e.printStackTrace();
         }
     }
