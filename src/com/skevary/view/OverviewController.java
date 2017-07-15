@@ -62,16 +62,17 @@ public class OverviewController {
                 parser = new JsoupParser(fieldUrl.getText(), fieldPath.getText(), this);
                 break;
             case "Gson":
-                parser = new GsonParser();
+                parser = new GsonParser(this);
                 break;
             case "Native":
-                parser = new NativeParser();
+                parser = new NativeParser(this);
                 break;
             default:
                 System.out.println("Wrong choice!");
         }
         parser.start();
     }
+
     public void stopParserButton(){
         parser.stop();
         parserButton.setText("Start");

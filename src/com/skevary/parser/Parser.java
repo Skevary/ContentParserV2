@@ -11,9 +11,17 @@ public abstract class Parser implements Runnable {
 
     /** The default constructor */
     public Parser() {
-        this.url = "Empty URL";
-        this.path = "Empty Path";
+        throw new UnsupportedOperationException("The default constructor is not supported.");
     }
+
+    /** The constructor with controller
+     *
+     * @param controller to update FXML form in runtime
+     */
+    public Parser(OverviewController controller) {
+        this.controller = controller;
+    }
+
     /**
      * Constructor with parameters
      *
@@ -32,6 +40,7 @@ public abstract class Parser implements Runnable {
         thread = new Thread(this);
         thread.start();
     }
+
     /** Stop operation of the parser. */
     public void stop() {
         try {
@@ -41,6 +50,7 @@ public abstract class Parser implements Runnable {
             Thread.currentThread().interrupt();
         }
     }
+
     /** Update component in {@link OverviewController} at the end of the download files. */
     public void endDownload(){
         Platform.runLater(new Runnable() {
@@ -50,6 +60,7 @@ public abstract class Parser implements Runnable {
             }
         });
     }
+
     /** @return parser - url address*/
     public String getUrl() { return url; }
 

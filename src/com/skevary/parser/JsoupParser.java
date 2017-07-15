@@ -11,9 +11,6 @@ import java.io.IOException;
 import java.net.URL;
 
 public class JsoupParser extends Parser {
-    /** The default constructor */
-    public JsoupParser() {
-    }
     /**
      * Constructor with parameters
      *
@@ -24,8 +21,9 @@ public class JsoupParser extends Parser {
     public JsoupParser(String url, String path, OverviewController controller) {
         super(url, path, controller);
     }
+
     /** Script which gets links and saves the content to disk */
-    public void run() {
+    @Override public void run() {
         try {
             Elements links = Jsoup.connect(getUrl()).get().select("a[href$=.webm]");
             double step = 0; // Step in the progress bar
