@@ -2,7 +2,7 @@ package com.skevary.parser;
 
 import com.skevary.view.OverviewController;
 import javafx.application.Platform;
-
+@SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class Parser implements Runnable {
     private OverviewController controller;
     private Thread thread;
@@ -10,7 +10,7 @@ public abstract class Parser implements Runnable {
     private String path;
 
     /** The default constructor */
-    public Parser() {
+    public Parser() throws UnsupportedOperationException {
         throw new UnsupportedOperationException("The default constructor is not supported.");
     }
 
@@ -53,11 +53,9 @@ public abstract class Parser implements Runnable {
 
     /** Update component in {@link OverviewController} at the end of the download files. */
     public void endDownload(){
-        Platform.runLater(new Runnable() {
-            public void run() {
-                controller.updateAreaLog("The download has been completed!\n");
-                controller.stopParserButton();
-            }
+        Platform.runLater(() -> {
+            controller.updateAreaLog("The download has been completed!\n");
+            controller.stopParserButton();
         });
     }
 

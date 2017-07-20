@@ -37,7 +37,6 @@ public class OverviewController {
         File selectedDirectory = directoryChooser.showDialog(null);
 
         if (selectedDirectory != null) fieldPath.setText(selectedDirectory.getAbsolutePath());
-        else selectedDirectory = null;
     }
 
     @FXML private void handleExit() { System.exit(0); }
