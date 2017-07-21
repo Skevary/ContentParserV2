@@ -54,7 +54,7 @@ public abstract class Parser implements Runnable {
     /** Update component in {@link OverviewController} at the end of the download files. */
     public void endDownload(){
         Platform.runLater(() -> {
-            controller.updateAreaLog("The download has been completed!\n");
+            controller.updateAreaLog("The end of the download!\n");
             controller.stopParserButton();
         });
     }

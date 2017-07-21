@@ -25,9 +25,12 @@ public class OverviewController {
 
     @FXML private void handleButtonStart() {
         if (parserButton.isSelected())
-            startParserButton();
-        else
-            stopParserButton();
+            if (!fieldUrl.getText().isEmpty() && !fieldPath.getText().isEmpty()) {
+                startParserButton();}
+            else {
+                parserButton.setSelected(false);
+                areaLog.setText("Please fill in all the fields!\n");}
+        else stopParserButton();
     }
 
     @FXML private void handleButtonPath() {

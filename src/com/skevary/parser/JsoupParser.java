@@ -41,7 +41,7 @@ public class JsoupParser extends Parser {
                 /* Save file on are disk */
                 if (!file.exists()) {
                     FileUtils.copyURLToFile(absUrl, file);
-                    getController().updateAreaLog("File \"" + fileName + "\" is successfully loaded\n");
+                    getController().updateAreaLog("File \"" + fileName + "\" is successfully loaded.\n");
                     getController().updateCounterFiles((int)step + " / " + (links.size()-1));
                 }
                 step++;
@@ -51,9 +51,11 @@ public class JsoupParser extends Parser {
             /* The end of the download*/
             endDownload();
 
-        } catch (IOException e) {
-            endDownload();
+        } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException | IOException e) {
+            getController().updateAreaLog(e.getMessage()+"\n");
             e.printStackTrace();
+
+            endDownload();
         }
     }
 }
