@@ -1,13 +1,13 @@
 package com.skevary.parser;
 
 import com.skevary.view.OverviewController;
-import javafx.application.Platform;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class Parser implements Runnable {
     private OverviewController controller;
     private Thread thread;
     private String url;
     private String path;
+    private boolean isStop;
 
     /** The default constructor */
     public Parser() throws UnsupportedOperationException {
@@ -38,36 +38,28 @@ public abstract class Parser implements Runnable {
     /** Start operation of the parser. */
     public void start() {
         thread = new Thread(this);
+        isStop = false;
         thread.start();
     }
 
     /** Stop operation of the parser. */
     public void stop() {
-        try {
-            thread.interrupt();
-            thread.join();
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        isStop = true;
     }
 
-    /** Update component in {@link OverviewController} at the end of the download files. */
-    public void endDownload(){
-        Platform.runLater(() -> {
-            controller.updateAreaLog("The end of the download!\n");
-            controller.stopParserButton();
-        });
-    }
 
-    /** @return parser - url address*/
+    /** @return url - target address*/
     public String getUrl() { return url; }
 
-    /** @return parser - local path*/
+    /** @return path - to local directory */
     public String getPath() { return path; }
 
-    /** @return parser - OverviewController*/
+    /** @return controller - instant overview controller */
     public OverviewController getController() { return controller; }
 
-    /** @return parser - thread*/
+    /** @return thread - parser thread */
     public Thread getThread() { return thread; }
+
+    /** @return isStop - boolean stop flag */
+    public boolean getFlag() { return isStop; }
 }

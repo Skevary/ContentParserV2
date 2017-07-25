@@ -24,38 +24,30 @@ public class JsoupParser extends Parser {
 
     /** Script which gets links and saves the content to disk */
     @Override public void run() {
-        try {
-            Elements links = Jsoup.connect(getUrl()).get().select("a[href$=.webm]");
-            double step = 0; // Step in the progress bar
-            for (Element link : links) {
-                /* Tests whether this thread has been interrupted. */
-                if (getThread().isInterrupted()) {
-                    stop();
-                    break;
-                }
-                String fileName = link.text();
+            try {
+                Elements links = Jsoup.connect(getUrl()).get().select("a[href$=.webm]");
+                for (int i = 0; !getFlag() && i < links.size(); i++) {
+                    Element link = links.get(i);
+                    String fileName = link.text();
                 /* Absolute path links */
-                URL absUrl = new URL(link.absUrl("abs:href"));
+                    URL absUrl = new URL(link.absUrl("abs:href"));
                 /* New file */
-                File file = new File(getPath() + File.separator + fileName);
+                    File file = new File(getPath() + File.separator + fileName);
                 /* Save file on are disk */
-                if (!file.exists()) {
-                    FileUtils.copyURLToFile(absUrl, file);
-                    getController().updateAreaLog("File \"" + fileName + "\" is successfully loaded.\n");
-                    getController().updateCounterFiles((int)step + " / " + (links.size()-1));
+                    if (!file.exists()) {
+                        FileUtils.copyURLToFile(absUrl, file);
+                        getController().updateAreaLog("File \"" + fileName + "\" is successfully loaded.\n");
+                        getController().updateCounterFiles(i + " / " + (links.size() - 1));
+                    }
+                    getController().updateProgressBar((double) i / links.size());
                 }
-                step++;
-                getController().updateProgressBar(step / links.size());
+                /* The end of the download*/
+                getController().updateAreaLog("The end of the download!\n");
+                getController().stopParserButton();
 
+            } catch ( RuntimeException | IOException  e) {
+                getController().updateAreaLog(e.getMessage() + "\n");
+                e.printStackTrace();
             }
-            /* The end of the download*/
-            endDownload();
-
-        } catch (RuntimeException | IOException e) {
-            getController().updateAreaLog(e.getMessage()+"\n");
-            e.printStackTrace();
-
-            endDownload();
         }
-    }
 }
