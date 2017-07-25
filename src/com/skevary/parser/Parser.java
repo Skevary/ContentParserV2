@@ -38,7 +38,7 @@ public abstract class Parser implements Runnable {
     /** Start operation of the parser. */
     public void start() {
         flag = false;
-        thread = new Thread(this);
+        thread = new Thread(this,"Parser-Thread");
         thread.start();
     }
 

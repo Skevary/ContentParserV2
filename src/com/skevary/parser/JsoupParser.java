@@ -37,12 +37,10 @@ public class JsoupParser extends Parser {
                         controller.updateAreaLog("File \"" + fileName + "\" is successfully loaded.\n");
                         controller.updateCounterFiles(i + " / " + (links.size() - 1));
                     }
-                    controller.updateProgressBar((double) i / links.size());
+                    controller.updateProgressBar((double) (i + 1) / links.size());
                 }
                 /* The end of the download*/
                 controller.updateAreaLog("The end of the download!\n");
-                controller.stopParserButton();
-
             } catch ( RuntimeException | IOException  e) {
                 controller.updateAreaLog(e.getMessage() + "\n");
                 e.printStackTrace();
