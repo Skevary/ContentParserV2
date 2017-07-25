@@ -46,8 +46,12 @@ public class OverviewController {
 
     @FXML private void handleClear() { areaLog.clear(); }
 
-    @FXML private void showInExplorer() throws IOException {
-        Runtime.getRuntime().exec("explorer.exe /select," + fieldPath.getText());
+    @FXML private void showInExplorer() {
+        try {
+            Runtime.getRuntime().exec("explorer.exe /select," + fieldPath.getText());
+        } catch (IOException e) {
+            updateAreaLog(e.getMessage());
+        }
     }
 
     public void updateAreaLog(String message){ areaLog.appendText(message); }
@@ -61,7 +65,7 @@ public class OverviewController {
         String selected = (String) parserGroup.getSelectedToggle().getUserData();
         switch (selected) {
             case "Jsoup":
-                parser = new JsoupParser(fieldUrl.getText(), fieldPath.getText(), this);
+                parser = new JsoupParser(fieldUrl.getText(), fieldPath.getText().trim(), this);
                 break;
             case "Gson":
                 parser = new GsonParser(this);

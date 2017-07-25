@@ -51,7 +51,7 @@ public class JsoupParser extends Parser {
             /* The end of the download*/
             endDownload();
 
-        } catch (IllegalArgumentException | ArrayIndexOutOfBoundsException | IOException e) {
+        } catch (RuntimeException | IOException e) {
             getController().updateAreaLog(e.getMessage()+"\n");
             e.printStackTrace();
 
