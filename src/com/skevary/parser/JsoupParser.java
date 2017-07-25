@@ -25,28 +25,26 @@ public class JsoupParser extends Parser {
     /** Script which gets links and saves the content to disk */
     @Override public void run() {
             try {
-                Elements links = Jsoup.connect(getUrl()).get().select("a[href$=.webm]");
-                for (int i = 0; !getFlag() && i < links.size(); i++) {
+                Elements links = Jsoup.connect(url).get().select("a[href$=.webm]");
+                for (int i = 0; !flag && i < links.size(); i++) {
                     Element link = links.get(i);
                     String fileName = link.text();
-                /* Absolute path links */
-                    URL absUrl = new URL(link.absUrl("abs:href"));
-                /* New file */
-                    File file = new File(getPath() + File.separator + fileName);
-                /* Save file on are disk */
+                    URL address = new URL(link.absUrl("abs:href")); /* Direct link to content file */
+                    File file = new File(path + File.separator + fileName);
+                    /* Save file on are disk */
                     if (!file.exists()) {
-                        FileUtils.copyURLToFile(absUrl, file);
-                        getController().updateAreaLog("File \"" + fileName + "\" is successfully loaded.\n");
-                        getController().updateCounterFiles(i + " / " + (links.size() - 1));
+                        FileUtils.copyURLToFile(address, file);
+                        controller.updateAreaLog("File \"" + fileName + "\" is successfully loaded.\n");
+                        controller.updateCounterFiles(i + " / " + (links.size() - 1));
                     }
-                    getController().updateProgressBar((double) i / links.size());
+                    controller.updateProgressBar((double) i / links.size());
                 }
                 /* The end of the download*/
-                getController().updateAreaLog("The end of the download!\n");
-                getController().stopParserButton();
+                controller.updateAreaLog("The end of the download!\n");
+                controller.stopParserButton();
 
             } catch ( RuntimeException | IOException  e) {
-                getController().updateAreaLog(e.getMessage() + "\n");
+                controller.updateAreaLog(e.getMessage() + "\n");
                 e.printStackTrace();
             }
         }

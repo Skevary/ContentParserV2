@@ -3,11 +3,11 @@ package com.skevary.parser;
 import com.skevary.view.OverviewController;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class Parser implements Runnable {
-    private OverviewController controller;
-    private Thread thread;
-    private String url;
-    private String path;
-    private boolean isStop;
+    OverviewController controller;
+    Thread thread;
+    String url;
+    String path;
+    boolean flag;
 
     /** The default constructor */
     public Parser() throws UnsupportedOperationException {
@@ -37,14 +37,14 @@ public abstract class Parser implements Runnable {
 
     /** Start operation of the parser. */
     public void start() {
+        flag = false;
         thread = new Thread(this);
-        isStop = false;
         thread.start();
     }
 
     /** Stop operation of the parser. */
     public void stop() {
-        isStop = true;
+        flag = true;
     }
 
 
@@ -60,6 +60,6 @@ public abstract class Parser implements Runnable {
     /** @return thread - parser thread */
     public Thread getThread() { return thread; }
 
-    /** @return isStop - boolean stop flag */
-    public boolean getFlag() { return isStop; }
+    /** @return flag - boolean stop flag */
+    public boolean getFlag() { return flag; }
 }
