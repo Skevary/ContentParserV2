@@ -1,6 +1,7 @@
 package com.skevary.parser;
 
 import com.skevary.view.OverviewController;
+
 @SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class Parser implements Runnable {
     OverviewController controller;
@@ -45,8 +46,8 @@ public abstract class Parser implements Runnable {
     /** Stop operation of the parser. */
     public void stop() {
         flag = true;
+        thread.interrupt();
     }
-
 
     /** @return url - target address*/
     public String getUrl() { return url; }

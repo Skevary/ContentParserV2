@@ -59,7 +59,7 @@ public class OverviewController {
     public void updateProgressBar(Double value){ progressBar.setProgress(value); }
 
     public void updateCounterFiles(String counter){ textCounterFiles.setText(counter); }
-    
+
     private void startParserButton(){
         parserButton.setText("Stop");
         String selected = (String) parserGroup.getSelectedToggle().getUserData();
@@ -82,6 +82,8 @@ public class OverviewController {
     public void stopParserButton(){
         parser.stop();
         parserButton.setText("Start");
+        updateProgressBar(0.0);
+        updateAreaLog("The end of the download!\n");
         parserButton.setSelected(false);
     }
 }

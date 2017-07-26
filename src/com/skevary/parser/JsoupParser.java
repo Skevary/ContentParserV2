@@ -1,13 +1,13 @@
 package com.skevary.parser;
 
 import com.skevary.view.OverviewController;
+import javafx.application.Platform;
 import org.apache.commons.io.FileUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 
 public class JsoupParser extends Parser {
@@ -35,13 +35,15 @@ public class JsoupParser extends Parser {
                     if (!file.exists()) {
                         FileUtils.copyURLToFile(address, file);
                         controller.updateAreaLog("File \"" + fileName + "\" is successfully loaded.\n");
-                        controller.updateCounterFiles(i + " / " + (links.size() - 1));
                     }
-                    controller.updateProgressBar((double) (i + 1) / links.size());
-                }
+                    int step = i;
+                    Platform.runLater(() -> {
+                    controller.updateCounterFiles((step + 1) + " / " + (links.size()));
+                    controller.updateProgressBar((double)(step + 1) / links.size()); });
+                    }
                 /* The end of the download*/
-                controller.updateAreaLog("The end of the download!\n");
-            } catch ( RuntimeException | IOException  e) {
+                Platform.runLater(() -> controller.stopParserButton());
+            } catch (Exception e) {
                 controller.updateAreaLog(e.getMessage() + "\n");
                 e.printStackTrace();
             }
